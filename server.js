@@ -1,8 +1,11 @@
-var http = require("http");
+var express = require('express');
+var app = express();
 
-http.createServer(function(request, response){
-response.writeHead(200, { "Content-Type": "text/plain"});
-response.write("Hello World");
-response.end();
+app.get('/', function(req, res) {
+   res.sendfile('./index.html');
+});
 
-}).listen(8888);
+app.use(express.static('public'));
+
+app.listen(80);
+console.log('Listening on port 80');
